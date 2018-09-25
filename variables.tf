@@ -13,3 +13,31 @@ variable "main_region" {
 variable "openvpn_count" {
   default = 1
 }
+
+variable "dns_count" {
+  default = 1
+}
+
+variable "redis_count" {
+  default = 3
+}
+
+variable "cassandra_count" {
+  default = 3
+}
+
+variable "radius_count" {
+  default = 2
+}
+
+variable "softether_count" {
+  default = 2
+}
+
+variable "web_count" {
+  default = 2
+}
+
+variable "runner_count" {
+  default = 1
+}

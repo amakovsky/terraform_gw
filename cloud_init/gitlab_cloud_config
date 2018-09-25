@@ -1,0 +1,7 @@
+#cloud-config
+packages:
+  - python-minimal
+  - python-setuptools
+  - dmidecode
+runcmd:
+  - sed -i -e '/^Port/s/^.*$/Port 2222/' etc/ssh/sshd_config
