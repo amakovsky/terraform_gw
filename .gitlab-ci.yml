@@ -1,8 +1,9 @@
 test:
   script:
-    - echo 'init'
-    - docker run -v $(pwd):/app/ -w /app/ hashicorp/terraform:light init
-    - echo 'fmt'
-    - docker run -v $(pwd):/app/ -w /app/ hashicorp/terraform:light fmt -check=true
-    - echo 'validate'
-    - docker run -v $(pwd):/app/ -w /app/ hashicorp/terraform:light validate
+    - ll $(pwd)
+#    - echo 'init'
+#    - docker run -v $(pwd):/app/ -w /app/ hashicorp/terraform:light init
+#    - echo 'fmt'
+#    - docker run -v $(pwd):/app/ -w /app/ hashicorp/terraform:light fmt -check=true
+#    - echo 'validate'
+#    - docker run -v $(pwd):/app/ -w /app/ hashicorp/terraform:light validate
