@@ -1,7 +1,7 @@
 test:
   script:
     - 'ls -alh $(pwd)'
-    - echo 'docker run -v $(pwd):/app/ -w /app/ hashicorp/terraform:light init'
+    - echo "docker run -v $(pwd):/app/ -w /app/ hashicorp/terraform:light init"
     - 'docker run -v $(pwd):/app/ -w /app/ hashicorp/terraform:light init'
 #    - echo 'fmt'
 #    - docker run -v $(pwd):/app/ -w /app/ hashicorp/terraform:light fmt -check=true
