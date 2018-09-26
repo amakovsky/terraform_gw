@@ -1,9 +1,11 @@
 variable "my_key_public" {
   default = ""
 }
+
 variable "my_key_private" {
   default = ""
 }
+
 variable "do_token" {
   default = ""
 }
