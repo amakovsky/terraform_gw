@@ -1,6 +1,12 @@
-variable "my_key_public" {}
-variable "my_key_private" {}
-variable "do_token" {}
+variable "my_key_public" {
+  default = ""
+}
+variable "my_key_private" {
+  default = ""
+}
+variable "do_token" {
+  default = ""
+}
 
 variable "main_image" {
   default = "ubuntu-18-04-x64"
