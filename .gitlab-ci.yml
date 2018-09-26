@@ -1,6 +1,6 @@
 test:
   script:
-    - ll $(pwd)
+    - 'ls -alh $(pwd)'
 #    - echo 'init'
 #    - docker run -v $(pwd):/app/ -w /app/ hashicorp/terraform:light init
 #    - echo 'fmt'
