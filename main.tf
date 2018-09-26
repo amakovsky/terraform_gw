@@ -21,7 +21,7 @@ resource "digitalocean_droplet" "dns" {
   region             = "${var.main_region}"
   size               = "1gb"
   private_networking = true
-  tags               = ["${digitalocean_tag.dns.name}"]
+  tags               = ["${digitalocean_tag.dns.name}", "${digitalocean_tag.private.name}"]
   ssh_keys           = ["${var.my_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 
@@ -68,7 +68,7 @@ resource "digitalocean_droplet" "gitlab-runner" {
   region             = "${var.main_region}"
   size               = "1gb"
   private_networking = true
-  tags               = ["${digitalocean_tag.runner.name}"]
+  tags               = ["${digitalocean_tag.runner.name}", "${digitalocean_tag.private.name}"]
   ssh_keys           = ["${var.my_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 
@@ -85,7 +85,7 @@ resource "digitalocean_droplet" "redis" {
   region             = "${var.main_region}"
   size               = "1gb"
   private_networking = true
-  tags               = ["${digitalocean_tag.redis.name}"]
+  tags               = ["${digitalocean_tag.redis.name}", "${digitalocean_tag.private.name}"]
   ssh_keys           = ["${var.my_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 
@@ -102,7 +102,7 @@ resource "digitalocean_droplet" "cassandra" {
   region             = "${var.main_region}"
   size               = "1gb"
   private_networking = true
-  tags               = ["${digitalocean_tag.cassandra.name}"]
+  tags               = ["${digitalocean_tag.cassandra.name}", "${digitalocean_tag.private.name}"]
   ssh_keys           = ["${var.my_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 
@@ -119,7 +119,7 @@ resource "digitalocean_droplet" "postgresql-master" {
   region             = "${var.main_region}"
   size               = "2gb"
   private_networking = true
-  tags               = ["${digitalocean_tag.postgresql.name}"]
+  tags               = ["${digitalocean_tag.postgresql.name}", "${digitalocean_tag.private.name}"]
   ssh_keys           = ["${var.my_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 
@@ -134,7 +134,7 @@ resource "digitalocean_droplet" "postgresql-slave" {
   region             = "${var.main_region}"
   size               = "2gb"
   private_networking = true
-  tags               = ["${digitalocean_tag.postgresql.name}"]
+  tags               = ["${digitalocean_tag.postgresql.name}", "${digitalocean_tag.private.name}"]
   ssh_keys           = ["${var.my_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 
@@ -149,7 +149,7 @@ resource "digitalocean_droplet" "radius" {
   region             = "${var.main_region}"
   size               = "1gb"
   private_networking = true
-  tags               = ["${digitalocean_tag.radius.name}"]
+  tags               = ["${digitalocean_tag.radius.name}", "${digitalocean_tag.private.name}"]
   ssh_keys           = ["${var.my_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 
@@ -166,7 +166,7 @@ resource "digitalocean_droplet" "softether" {
   region             = "${var.main_region}"
   size               = "1gb"
   private_networking = true
-  tags               = ["${digitalocean_tag.softether.name}"]
+  tags               = ["${digitalocean_tag.softether.name}", "${digitalocean_tag.private.name}"]
   ssh_keys           = ["${var.my_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 
@@ -198,7 +198,7 @@ resource "digitalocean_droplet" "web" {
   region             = "${var.main_region}"
   size               = "1gb"
   private_networking = true
-  tags               = ["${digitalocean_tag.web.name}"]
+  tags               = ["${digitalocean_tag.web.name}", "${digitalocean_tag.private.name}"]
   ssh_keys           = ["${var.my_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 

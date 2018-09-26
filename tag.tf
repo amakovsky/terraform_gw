@@ -6,6 +6,14 @@ resource "digitalocean_tag" "redis" {
       }
 }
 
+resource "digitalocean_tag" "private" {
+  name = "private"
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
 resource "digitalocean_tag" "openvpn" {
   name = "openvpn"
 
