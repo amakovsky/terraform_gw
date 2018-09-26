@@ -1,9 +1,8 @@
 test:
-  image: hashicorp/terraform
   script:
     - echo 'init'
-    - terraform init
+    - docker run -i -t hashicorp/terraform:light init
     - echo 'fmt'
-    - terraform fmt -check=true
+    - docker run -i -t hashicorp/terraform:light fmt -check=true
     - echo 'validate'
-    - terraform validate
+    - docker run -i -t hashicorp/terraform:light validate
