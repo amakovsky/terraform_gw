@@ -1,0 +1,5 @@
+image: hashicorp/terraform
+script:
+    - terraform init
+    - terraform fmt -check=true
+    - terraform validate
