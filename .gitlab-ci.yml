@@ -1,6 +1,9 @@
 test:
   image: hashicorp/terraform
   script:
+    - echo 'init'
     - terraform init
+    - echo 'fmt'
     - terraform fmt -check=true
+    - echo 'validate'
     - terraform validate
