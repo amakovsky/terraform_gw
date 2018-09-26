@@ -4,18 +4,16 @@ resource "digitalocean_firewall" "openvpn" {
 
   inbound_rule = [
     {
-      protocol           = "tcp"
-      port_range         = "22"
-      source_addresses   = ["0.0.0.0/0", "::/0"]
+      protocol         = "tcp"
+      port_range       = "22"
+      source_addresses = ["0.0.0.0/0", "::/0"]
     },
     {
-      protocol           = "udp"
-      port_range         = "1194"
-      source_addresses   = ["0.0.0.0/0", "::/0"]
+      protocol         = "udp"
+      port_range       = "1194"
+      source_addresses = ["0.0.0.0/0", "::/0"]
     },
-
   ]
-
 }
 
 resource "digitalocean_firewall" "gitlab" {
@@ -24,18 +22,14 @@ resource "digitalocean_firewall" "gitlab" {
 
   inbound_rule = [
     {
-      protocol           = "tcp"
-      port_range         = "22"
-      source_addresses   = ["0.0.0.0/0", "::/0"]
+      protocol         = "tcp"
+      port_range       = "22"
+      source_addresses = ["0.0.0.0/0", "::/0"]
     },
-
   ]
-
 }
 
 resource "digitalocean_firewall" "private" {
   name = "private"
   tags = ["${digitalocean_tag.private.id}"]
-
-
 }

@@ -8,8 +8,8 @@ resource "digitalocean_droplet" "openvpn" {
   ssh_keys           = ["${var.my_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 
+  count = "${var.openvpn_count}"
 
-  count =  "${var.openvpn_count}"
   lifecycle {
     prevent_destroy = true
   }
@@ -25,8 +25,8 @@ resource "digitalocean_droplet" "dns" {
   ssh_keys           = ["${var.my_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 
+  count = "${var.dns_count}"
 
-  count =  "${var.dns_count}"
   lifecycle {
     prevent_destroy = true
   }
@@ -72,8 +72,8 @@ resource "digitalocean_droplet" "gitlab-runner" {
   ssh_keys           = ["${var.my_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 
+  count = "${var.runner_count}"
 
-  count =  "${var.runner_count}"
   lifecycle {
     prevent_destroy = true
   }
@@ -89,8 +89,8 @@ resource "digitalocean_droplet" "redis" {
   ssh_keys           = ["${var.my_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 
+  count = "${var.redis_count}"
 
-  count =  "${var.redis_count}"
   lifecycle {
     prevent_destroy = true
   }
@@ -106,8 +106,8 @@ resource "digitalocean_droplet" "cassandra" {
   ssh_keys           = ["${var.my_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 
+  count = "${var.cassandra_count}"
 
-  count =  "${var.cassandra_count}"
   lifecycle {
     prevent_destroy = true
   }
@@ -153,8 +153,8 @@ resource "digitalocean_droplet" "radius" {
   ssh_keys           = ["${var.my_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 
+  count = "${var.radius_count}"
 
-  count =  "${var.radius_count}"
   lifecycle {
     prevent_destroy = true
   }
@@ -170,8 +170,8 @@ resource "digitalocean_droplet" "softether" {
   ssh_keys           = ["${var.my_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 
+  count = "${var.softether_count}"
 
-  count =  "${var.softether_count}"
   lifecycle {
     prevent_destroy = true
   }
@@ -202,8 +202,8 @@ resource "digitalocean_droplet" "web" {
   ssh_keys           = ["${var.my_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 
+  count = "${var.web_count}"
 
-  count =  "${var.web_count}"
   lifecycle {
     prevent_destroy = true
   }
