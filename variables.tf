@@ -1,5 +1,5 @@
 variable "my_key_public" {
-  default = ""
+  default = " "
 }
 
 variable "my_key_private" {
