@@ -43,28 +43,6 @@ resource "digitalocean_firewall" "openvpn" {
       port_range       = "1194"
       source_addresses = ["0.0.0.0/0", "::/0"]
     },
-    {
-      protocol    = "tcp"
-      port_range  = "10050"
-      source_tags = ["${digitalocean_tag.zabbix.id}"]
-    },
-  ]
-
-  outbound_rule = [
-    {
-      protocol              = "tcp"
-      port_range            = "1-65535"
-      destination_addresses = ["0.0.0.0/0", "::/0"]
-    },
-    {
-      protocol              = "udp"
-      port_range            = "1-65535"
-      destination_addresses = ["0.0.0.0/0", "::/0"]
-    },
-    {
-      protocol              = "icmp"
-      destination_addresses = ["0.0.0.0/0", "::/0"]
-    },
   ]
 }
 
@@ -93,13 +71,6 @@ resource "digitalocean_firewall" "gitlab" {
       port_range  = "443"
       source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.runner.id}"]
     },
-    {
-      protocol   = "tcp"
-      port_range = "10050"
-
-      #      source_addresses = ["${digitalocean_tag.zabbix.id}"]
-      source_tags = ["${digitalocean_tag.zabbix.id}"]
-    },
   ]
 }
 
@@ -123,18 +94,13 @@ resource "digitalocean_firewall" "dns" {
   inbound_rule = [
     {
       protocol    = "tcp"
-      port_range  = "22"
-      source_tags = ["${digitalocean_tag.openvpn.id}"]
+      port_range  = "53"
+      source_tags = ["${digitalocean_tag.all.id}", "${digitalocean_tag.zabbix.id}"]
     },
     {
-      protocol         = "tcp"
-      port_range       = "53"
-      source_addresses = ["0.0.0.0/0", "::/0"]
-    },
-    {
-      protocol         = "udp"
-      port_range       = "53"
-      source_addresses = ["0.0.0.0/0", "::/0"]
+      protocol    = "udp"
+      port_range  = "53"
+      source_tags = ["${digitalocean_tag.all.id}", "${digitalocean_tag.zabbix.id}"]
     },
   ]
 }
@@ -145,31 +111,33 @@ resource "digitalocean_firewall" "postgresql" {
 
   inbound_rule = [
     {
-      protocol    = "tcp"
-      port_range  = "22"
-      source_tags = ["${digitalocean_tag.openvpn.id}"]
-    },
-    {
       protocol         = "tcp"
       port_range       = "5432"
       source_addresses = ["0.0.0.0/0", "::/0"]
+      source_tags      = ["${digitalocean_tag.openvpn.id}"]
     },
   ]
+}
 
-  outbound_rule = [
+resource "digitalocean_firewall" "zabbix" {
+  name = "zabbix"
+  tags = ["${digitalocean_tag.zabbix.id}"]
+
+  inbound_rule = [
     {
-      protocol              = "tcp"
-      port_range            = "1-65535"
-      destination_addresses = ["0.0.0.0/0", "::/0"]
+      protocol         = "tcp"
+      port_range       = "10051"
+      source_addresses = ["0.0.0.0/0", "::/0"]
     },
     {
-      protocol              = "udp"
-      port_range            = "1-65535"
-      destination_addresses = ["0.0.0.0/0", "::/0"]
+      protocol    = "tcp"
+      port_range  = "80"
+      source_tags = ["${digitalocean_tag.openvpn.id}"]
     },
     {
-      protocol              = "icmp"
-      destination_addresses = ["0.0.0.0/0", "::/0"]
+      protocol    = "tcp"
+      port_range  = "443"
+      source_tags = ["${digitalocean_tag.openvpn.id}"]
     },
   ]
 }

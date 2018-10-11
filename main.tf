@@ -2,7 +2,7 @@ resource "digitalocean_droplet" "openvpn" {
   image              = "${var.main_image}"
   name               = "openvpn${count.index + 1}.gw.lan"
   region             = "${var.main_region}"
-  size               = "s-1vcpu-1gb"
+  size               = "1gb"
   private_networking = true
   tags               = ["${digitalocean_tag.openvpn.name}", "${digitalocean_tag.all.name}"]
   ssh_keys           = ["${var.my_key_public}"]
@@ -38,7 +38,7 @@ resource "digitalocean_droplet" "zabbix" {
   region             = "${var.main_region}"
   size               = "s-1vcpu-2gb"
   private_networking = true
-  tags               = ["${digitalocean_tag.zabbix.name}", "${digitalocean_tag.all.name}"]
+  tags               = ["${digitalocean_tag.zabbix.name}", "${digitalocean_tag.all.name}", "${digitalocean_tag.private.name}"]
   ssh_keys           = ["${var.my_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 
