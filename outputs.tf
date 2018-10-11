@@ -66,6 +66,10 @@ output "private ip postgresql-slave" {
   value = "${digitalocean_droplet.postgresql-slave.*.ipv4_address_private}"
 }
 
+output "public ip postgresql-slave" {
+  value = "${digitalocean_droplet.postgresql-slave.*.ipv4_address}"
+}
+
 output "public ip radius" {
   value = "${digitalocean_droplet.radius.*.ipv4_address}"
 }
