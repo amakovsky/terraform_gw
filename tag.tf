@@ -101,3 +101,11 @@ resource "digitalocean_tag" "runner" {
     prevent_destroy = true
   }
 }
+
+resource "digitalocean_tag" "all" {
+  name = "all"
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
