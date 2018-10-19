@@ -132,12 +132,30 @@ resource "digitalocean_firewall" "zabbix" {
     {
       protocol    = "tcp"
       port_range  = "80"
-      source_tags = ["${digitalocean_tag.openvpn.id}"]
+      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.all.id}"]
     },
     {
       protocol    = "tcp"
       port_range  = "443"
       source_tags = ["${digitalocean_tag.openvpn.id}"]
+    },
+  ]
+}
+
+resource "digitalocean_firewall" "redis" {
+  name = "redis"
+  tags = ["${digitalocean_tag.redis.id}"]
+
+  inbound_rule = [
+    {
+      protocol    = "tcp"
+      port_range  = "6379"
+      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.redis.id}", "${digitalocean_tag.web.id}"]
+    },
+    {
+      protocol    = "tcp"
+      port_range  = "26379"
+      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.redis.id}", "${digitalocean_tag.web.id}"]
     },
   ]
 }
