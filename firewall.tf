@@ -159,3 +159,48 @@ resource "digitalocean_firewall" "redis" {
     },
   ]
 }
+
+resource "digitalocean_firewall" "cassandra" {
+  name = "cassandra"
+  tags = ["${digitalocean_tag.cassandra.id}"]
+
+  inbound_rule = [
+    {
+      protocol    = "tcp"
+      port_range  = "7000"
+      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.cassandra.id}", "${digitalocean_tag.web.id}"]
+    },
+    {
+      protocol    = "tcp"
+      port_range  = "9042"
+      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.cassandra.id}", "${digitalocean_tag.web.id}"]
+    },
+  ]
+}
+
+resource "digitalocean_firewall" "asterisk" {
+  name = "asterisk"
+  tags = ["${digitalocean_tag.asterisk.id}"]
+
+  inbound_rule = [
+    {
+      protocol         = "udp"
+      port_range       = "5060"
+      source_addresses = ["0.0.0.0/0", "::/0"]
+      source_tags      = ["${digitalocean_tag.openvpn.id}"]
+    },
+  ]
+}
+
+resource "digitalocean_firewall" "radius" {
+  name = "radius"
+  tags = ["${digitalocean_tag.radius.id}"]
+
+  inbound_rule = [
+    {
+      protocol         = "udp"
+      port_range       = "1-65535"
+      source_addresses = ["0.0.0.0/0", "::/0"]
+    },
+  ]
+}

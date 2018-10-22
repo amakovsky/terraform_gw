@@ -100,7 +100,7 @@ resource "digitalocean_droplet" "cassandra" {
   image              = "${var.main_image}"
   name               = "cassandra${count.index + 1}.gw.lan"
   region             = "${var.main_region}"
-  size               = "s-1vcpu-1gb"
+  size               = "s-1vcpu-3gb"
   private_networking = true
   tags               = ["${digitalocean_tag.cassandra.name}", "${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
   ssh_keys           = ["${var.my_key_public}"]
@@ -144,7 +144,7 @@ resource "digitalocean_droplet" "postgresql-slave" {
 }
 
 resource "digitalocean_droplet" "radius" {
-  image              = "${var.main_image}"
+  image              = "ubuntu-16-04-x64"
   name               = "radius${count.index + 1}.gw.lan"
   region             = "${var.main_region}"
   size               = "s-1vcpu-1gb"
@@ -156,7 +156,7 @@ resource "digitalocean_droplet" "radius" {
   count = "${var.radius_count}"
 
   lifecycle {
-    prevent_destroy = true
+#    prevent_destroy = true
   }
 }
 
@@ -183,7 +183,7 @@ resource "digitalocean_droplet" "asterisk" {
   region             = "${var.main_region}"
   size               = "s-1vcpu-1gb"
   private_networking = true
-  tags               = ["${digitalocean_tag.asterisk.name}", "${digitalocean_tag.all.name}"]
+  tags               = ["${digitalocean_tag.asterisk.name}", "${digitalocean_tag.all.name}", "${digitalocean_tag.private.name}"]
   ssh_keys           = ["${var.my_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 
