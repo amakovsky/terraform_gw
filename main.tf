@@ -156,7 +156,7 @@ resource "digitalocean_droplet" "radius" {
   count = "${var.radius_count}"
 
   lifecycle {
-#    prevent_destroy = true
+    #    prevent_destroy = true
   }
 }
 
