@@ -49,3 +49,7 @@ variable "web_count" {
 variable "runner_count" {
   default = 1
 }
+
+variable "test_count" {
+  default = 1
+}

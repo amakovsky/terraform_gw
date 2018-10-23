@@ -83,13 +83,14 @@ resource "digitalocean_droplet" "redis" {
   image              = "${var.main_image}"
   name               = "redis${count.index + 1}.gw.lan"
   region             = "${var.main_region}"
-  size               = "s-1vcpu-1gb"
+  size               = "s-4vcpu-8gb"
   private_networking = true
   tags               = ["${digitalocean_tag.redis.name}", "${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
   ssh_keys           = ["${var.my_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 
-  count = "${var.redis_count}"
+  count       = "${var.redis_count}"
+  resize_disk = false
 
   lifecycle {
     prevent_destroy = true
@@ -100,7 +101,7 @@ resource "digitalocean_droplet" "cassandra" {
   image              = "${var.main_image}"
   name               = "cassandra${count.index + 1}.gw.lan"
   region             = "${var.main_region}"
-  size               = "s-1vcpu-3gb"
+  size               = "s-6vcpu-16gb"
   private_networking = true
   tags               = ["${digitalocean_tag.cassandra.name}", "${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
   ssh_keys           = ["${var.my_key_public}"]
@@ -147,16 +148,17 @@ resource "digitalocean_droplet" "radius" {
   image              = "ubuntu-16-04-x64"
   name               = "radius${count.index + 1}.gw.lan"
   region             = "${var.main_region}"
-  size               = "s-1vcpu-1gb"
+  size               = "s-2vcpu-2gb"
   private_networking = true
   tags               = ["${digitalocean_tag.radius.name}", "${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
   ssh_keys           = ["${var.my_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 
-  count = "${var.radius_count}"
+  count       = "${var.radius_count}"
+  resize_disk = false
 
   lifecycle {
-    #    prevent_destroy = true
+    prevent_destroy = true
   }
 }
 
@@ -170,7 +172,8 @@ resource "digitalocean_droplet" "softether" {
   ssh_keys           = ["${var.my_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 
-  count = "${var.softether_count}"
+  count       = "${var.softether_count}"
+  resize_disk = false
 
   lifecycle {
     prevent_destroy = true
@@ -181,11 +184,12 @@ resource "digitalocean_droplet" "asterisk" {
   image              = "${var.main_image}"
   name               = "asterisk.gw.lan"
   region             = "${var.main_region}"
-  size               = "s-1vcpu-1gb"
+  size               = "s-2vcpu-2gb"
   private_networking = true
   tags               = ["${digitalocean_tag.asterisk.name}", "${digitalocean_tag.all.name}", "${digitalocean_tag.private.name}"]
   ssh_keys           = ["${var.my_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
+  resize_disk        = false
 
   lifecycle {
     prevent_destroy = true
@@ -201,10 +205,27 @@ resource "digitalocean_droplet" "web" {
   tags               = ["${digitalocean_tag.web.name}", "${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
   ssh_keys           = ["${var.my_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
-
-  count = "${var.web_count}"
+  resize_disk        = false
+  count              = "${var.web_count}"
 
   lifecycle {
     prevent_destroy = true
+  }
+}
+
+resource "digitalocean_droplet" "test" {
+  image              = "${var.main_image}"
+  name               = "test${count.index + 1}.gw.lan"
+  region             = "${var.main_region}"
+  size               = "s-1vcpu-1gb"
+  private_networking = true
+  tags               = ["${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
+  ssh_keys           = ["${var.my_key_public}"]
+  user_data          = "${file("cloud_init/cloud_config")}"
+
+  count = "${var.test_count}"
+
+  lifecycle {
+    #    prevent_destroy = true
   }
 }
