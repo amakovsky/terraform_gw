@@ -5,7 +5,7 @@ resource "digitalocean_droplet" "openvpn" {
   size               = "1gb"
   private_networking = true
   tags               = ["${digitalocean_tag.openvpn.name}", "${digitalocean_tag.all.name}"]
-  ssh_keys           = ["${var.my_key_public}"]
+  ssh_keys           = ["${var.my_key_public}", "${var.vlad_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 
   count = "${var.openvpn_count}"
@@ -22,7 +22,7 @@ resource "digitalocean_droplet" "dns" {
   size               = "1gb"
   private_networking = true
   tags               = ["${digitalocean_tag.dns.name}", "${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
-  ssh_keys           = ["${var.my_key_public}"]
+  ssh_keys           = ["${var.my_key_public}", "${var.vlad_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 
   count = "${var.dns_count}"
@@ -39,7 +39,7 @@ resource "digitalocean_droplet" "zabbix" {
   size               = "s-1vcpu-2gb"
   private_networking = true
   tags               = ["${digitalocean_tag.zabbix.name}", "${digitalocean_tag.all.name}", "${digitalocean_tag.private.name}"]
-  ssh_keys           = ["${var.my_key_public}"]
+  ssh_keys           = ["${var.my_key_public}", "${var.vlad_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 
   lifecycle {
@@ -54,7 +54,7 @@ resource "digitalocean_droplet" "gitlab" {
   size               = "s-2vcpu-4gb"
   private_networking = true
   tags               = ["${digitalocean_tag.gitlab.name}", "${digitalocean_tag.all.name}"]
-  ssh_keys           = ["${var.my_key_public}"]
+  ssh_keys           = ["${var.my_key_public}", "${var.vlad_key_public}"]
   user_data          = "${file("cloud_init/gitlab_cloud_config")}"
 
   lifecycle {
@@ -69,7 +69,7 @@ resource "digitalocean_droplet" "gitlab-runner" {
   size               = "s-1vcpu-1gb"
   private_networking = true
   tags               = ["${digitalocean_tag.runner.name}", "${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
-  ssh_keys           = ["${var.my_key_public}"]
+  ssh_keys           = ["${var.my_key_public}", "${var.vlad_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 
   count = "${var.runner_count}"
@@ -86,7 +86,7 @@ resource "digitalocean_droplet" "redis" {
   size               = "s-4vcpu-8gb"
   private_networking = true
   tags               = ["${digitalocean_tag.redis.name}", "${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
-  ssh_keys           = ["${var.my_key_public}"]
+  ssh_keys           = ["${var.my_key_public}", "${var.vlad_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 
   count       = "${var.redis_count}"
@@ -104,7 +104,7 @@ resource "digitalocean_droplet" "cassandra" {
   size               = "s-6vcpu-16gb"
   private_networking = true
   tags               = ["${digitalocean_tag.cassandra.name}", "${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
-  ssh_keys           = ["${var.my_key_public}"]
+  ssh_keys           = ["${var.my_key_public}", "${var.vlad_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 
   count = "${var.cassandra_count}"
@@ -121,7 +121,7 @@ resource "digitalocean_droplet" "postgresql-master" {
   size               = "s-6vcpu-16gb"
   private_networking = true
   tags               = ["${digitalocean_tag.postgresql.name}", "${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
-  ssh_keys           = ["${var.my_key_public}"]
+  ssh_keys           = ["${var.my_key_public}", "${var.vlad_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 
   lifecycle {
@@ -136,7 +136,7 @@ resource "digitalocean_droplet" "postgresql-slave" {
   size               = "s-4vcpu-8gb"
   private_networking = true
   tags               = ["${digitalocean_tag.postgresql.name}", "${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
-  ssh_keys           = ["${var.my_key_public}"]
+  ssh_keys           = ["${var.my_key_public}", "${var.vlad_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 
   lifecycle {
@@ -151,14 +151,14 @@ resource "digitalocean_droplet" "radius" {
   size               = "s-2vcpu-2gb"
   private_networking = true
   tags               = ["${digitalocean_tag.radius.name}", "${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
-  ssh_keys           = ["${var.my_key_public}"]
+  ssh_keys           = ["${var.my_key_public}", "${var.vlad_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 
   count       = "${var.radius_count}"
   resize_disk = false
 
   lifecycle {
-    prevent_destroy = true
+    #    prevent_destroy = true
   }
 }
 
@@ -169,7 +169,7 @@ resource "digitalocean_droplet" "softether" {
   size               = "s-1vcpu-1gb"
   private_networking = true
   tags               = ["${digitalocean_tag.softether.name}", "${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
-  ssh_keys           = ["${var.my_key_public}"]
+  ssh_keys           = ["${var.my_key_public}", "${var.vlad_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
 
   count       = "${var.softether_count}"
@@ -187,7 +187,7 @@ resource "digitalocean_droplet" "asterisk" {
   size               = "s-2vcpu-2gb"
   private_networking = true
   tags               = ["${digitalocean_tag.asterisk.name}", "${digitalocean_tag.all.name}", "${digitalocean_tag.private.name}"]
-  ssh_keys           = ["${var.my_key_public}"]
+  ssh_keys           = ["${var.my_key_public}", "${var.vlad_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
   resize_disk        = false
 
@@ -203,7 +203,7 @@ resource "digitalocean_droplet" "web" {
   size               = "s-1vcpu-1gb"
   private_networking = true
   tags               = ["${digitalocean_tag.web.name}", "${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
-  ssh_keys           = ["${var.my_key_public}"]
+  ssh_keys           = ["${var.my_key_public}", "${var.vlad_key_public}"]
   user_data          = "${file("cloud_init/cloud_config")}"
   resize_disk        = false
   count              = "${var.web_count}"

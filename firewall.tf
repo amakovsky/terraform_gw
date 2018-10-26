@@ -43,6 +43,10 @@ resource "digitalocean_firewall" "openvpn" {
       port_range       = "1194"
       source_addresses = ["0.0.0.0/0", "::/0"]
     },
+    {
+      protocol         = "icmp"
+      source_addresses = ["0.0.0.0/0", "::/0"]
+    },
   ]
 }
 
@@ -114,7 +118,11 @@ resource "digitalocean_firewall" "postgresql" {
       protocol         = "tcp"
       port_range       = "5432"
       source_addresses = ["0.0.0.0/0", "::/0"]
-      source_tags      = ["${digitalocean_tag.openvpn.id}"]
+      source_tags      = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.postgresql.id}"]
+    },
+    {
+      protocol    = "icmp"
+      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.postgresql.id}", "${digitalocean_tag.zabbix.id}"]
     },
   ]
 }

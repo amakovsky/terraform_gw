@@ -2,6 +2,10 @@ variable "my_key_public" {
   default = " "
 }
 
+variable "vlad_key_public" {
+  default = " "
+}
+
 variable "my_key_private" {
   default = ""
 }
