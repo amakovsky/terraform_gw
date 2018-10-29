@@ -43,7 +43,7 @@ variable "radius_count" {
 }
 
 variable "softether_count" {
-  default = 2
+  default = 3
 }
 
 variable "web_count" {

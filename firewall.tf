@@ -212,3 +212,31 @@ resource "digitalocean_firewall" "radius" {
     },
   ]
 }
+
+resource "digitalocean_firewall" "softether" {
+  name = "softether"
+  tags = ["${digitalocean_tag.softether.id}"]
+
+  inbound_rule = [
+    {
+      protocol         = "udp"
+      port_range       = "500"
+      source_addresses = ["0.0.0.0/0", "::/0"]
+    },
+    {
+      protocol         = "udp"
+      port_range       = "4500"
+      source_addresses = ["0.0.0.0/0", "::/0"]
+    },
+    {
+      protocol         = "udp"
+      port_range       = "1701"
+      source_addresses = ["0.0.0.0/0", "::/0"]
+    },
+    {
+      protocol         = "tcp"
+      port_range       = "8443"
+      source_addresses = ["0.0.0.0/0", "::/0"]
+    },
+  ]
+}
