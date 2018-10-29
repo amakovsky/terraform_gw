@@ -183,6 +183,11 @@ resource "digitalocean_firewall" "cassandra" {
       port_range  = "9042"
       source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.cassandra.id}", "${digitalocean_tag.web.id}"]
     },
+    {
+      protocol    = "tcp"
+      port_range  = "7199"
+      source_tags = ["${digitalocean_tag.zabbix.id}"]
+    },
   ]
 }
 
