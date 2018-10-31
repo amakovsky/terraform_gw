@@ -109,3 +109,11 @@ output "public ip test" {
 output "private ip test" {
   value = "${digitalocean_droplet.test.*.ipv4_address_private}"
 }
+
+output "public ip nodejs" {
+  value = "${digitalocean_droplet.nodejs.*.ipv4_address}"
+}
+
+output "private ip nodejs" {
+  value = "${digitalocean_droplet.nodejs.*.ipv4_address_private}"
+}
