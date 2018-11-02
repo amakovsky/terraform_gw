@@ -47,7 +47,7 @@ variable "softether_count" {
 }
 
 variable "web_count" {
-  default = 2
+  default = 1
 }
 
 variable "runner_count" {
