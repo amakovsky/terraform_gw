@@ -145,7 +145,7 @@ resource "digitalocean_droplet" "postgresql-slave" {
 }
 
 resource "digitalocean_droplet" "radius" {
-  image              = "ubuntu-16-04-x64"
+  image              = "39567158"
   name               = "radius${count.index + 1}.gw.lan"
   region             = "${var.main_region}"
   size               = "s-2vcpu-2gb"
@@ -210,6 +210,23 @@ resource "digitalocean_droplet" "web" {
 
   lifecycle {
     #    prevent_destroy = true
+  }
+}
+
+resource "digitalocean_droplet" "web-data" {
+  image              = "${var.main_image}"
+  name               = "web-data${count.index + 1}.gw.lan"
+  region             = "${var.main_region}"
+  size               = "s-2vcpu-2gb"
+  private_networking = true
+  tags               = ["${digitalocean_tag.web-data.name}", "${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
+  ssh_keys           = ["${var.my_key_public}", "${var.vlad_key_public}"]
+  user_data          = "${file("cloud_init/cloud_config")}"
+  resize_disk        = false
+  count              = "${var.web_data_count}"
+
+  lifecycle {
+    prevent_destroy = true
   }
 }
 

@@ -94,6 +94,14 @@ resource "digitalocean_tag" "web" {
   }
 }
 
+resource "digitalocean_tag" "web-data" {
+  name = "web-data"
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
 resource "digitalocean_tag" "runner" {
   name = "runner"
 

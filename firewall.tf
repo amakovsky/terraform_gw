@@ -261,5 +261,10 @@ resource "digitalocean_firewall" "web" {
       port_range       = "443"
       source_addresses = ["0.0.0.0/0", "::/0"]
     },
+    {
+      protocol    = "tcp"
+      port_range  = "22"
+      source_tags = ["${digitalocean_tag.web.id}", "${digitalocean_tag.runner.id}"]
+    },
   ]
 }

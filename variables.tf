@@ -47,6 +47,10 @@ variable "softether_count" {
 }
 
 variable "web_count" {
+  default = 2
+}
+
+variable "web_data_count" {
   default = 1
 }
 
