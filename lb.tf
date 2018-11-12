@@ -11,15 +11,24 @@ resource "digitalocean_loadbalancer" "web" {
   region                 = "${var.main_region}"
   redirect_http_to_https = true
 
-  forwarding_rule {
-    entry_port     = 443
-    entry_protocol = "https"
+  forwarding_rule = [
+    {
+      entry_port     = 80
+      entry_protocol = "http"
 
-    target_port     = 80
-    target_protocol = "http"
+      target_port     = 80
+      target_protocol = "http"
+    },
+    {
+      entry_port     = 443
+      entry_protocol = "https"
 
-    certificate_id = "${digitalocean_certificate.cert.id}"
-  }
+      target_port     = 80
+      target_protocol = "http"
+
+      certificate_id = "${digitalocean_certificate.cert.id}"
+    },
+  ]
 
   healthcheck {
     port     = 80

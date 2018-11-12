@@ -17,27 +17,34 @@ resource "digitalocean_record" "krispykreme" {
 resource "digitalocean_record" "app" {
   domain = "${digitalocean_domain.gettwifi.name}"
   type   = "A"
-  name   = "app"
+  name   = "appnew"
   value  = "${digitalocean_loadbalancer.web.ip}"
 }
 
 resource "digitalocean_record" "auth" {
   domain = "${digitalocean_domain.gettwifi.name}"
   type   = "A"
-  name   = "app"
+  name   = "authnew"
   value  = "${digitalocean_loadbalancer.web.ip}"
 }
 
 resource "digitalocean_record" "lk" {
   domain = "${digitalocean_domain.gettwifi.name}"
   type   = "A"
-  name   = "app"
+  name   = "lknew"
   value  = "${digitalocean_loadbalancer.web.ip}"
 }
 
 resource "digitalocean_record" "cp" {
   domain = "${digitalocean_domain.gettwifi.name}"
   type   = "A"
-  name   = "app"
+  name   = "cpnew"
+  value  = "${digitalocean_loadbalancer.web.ip}"
+}
+
+resource "digitalocean_record" "fetch" {
+  domain = "${digitalocean_domain.gettwifi.name}"
+  type   = "A"
+  name   = "fetchnew"
   value  = "${digitalocean_loadbalancer.web.ip}"
 }

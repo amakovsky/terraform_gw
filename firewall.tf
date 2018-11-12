@@ -176,12 +176,12 @@ resource "digitalocean_firewall" "cassandra" {
     {
       protocol    = "tcp"
       port_range  = "7000"
-      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.cassandra.id}", "${digitalocean_tag.web.id}"]
+      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.cassandra.id}", "${digitalocean_tag.web.id}", "${digitalocean_tag.web-data.id}"]
     },
     {
       protocol    = "tcp"
       port_range  = "9042"
-      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.cassandra.id}", "${digitalocean_tag.web.id}"]
+      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.cassandra.id}", "${digitalocean_tag.web.id}", "${digitalocean_tag.web-data.id}"]
     },
     {
       protocol    = "tcp"
@@ -265,6 +265,19 @@ resource "digitalocean_firewall" "web" {
       protocol    = "tcp"
       port_range  = "22"
       source_tags = ["${digitalocean_tag.web.id}", "${digitalocean_tag.runner.id}"]
+    },
+  ]
+}
+
+resource "digitalocean_firewall" "web-data" {
+  name = "web-data"
+  tags = ["${digitalocean_tag.web-data.id}"]
+
+  inbound_rule = [
+    {
+      protocol    = "tcp"
+      port_range  = "22"
+      source_tags = ["${digitalocean_tag.runner.id}"]
     },
   ]
 }

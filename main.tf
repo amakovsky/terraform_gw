@@ -75,7 +75,7 @@ resource "digitalocean_droplet" "gitlab-runner" {
   count = "${var.runner_count}"
 
   lifecycle {
-    #    prevent_destroy = true
+    prevent_destroy = true
   }
 }
 
@@ -140,7 +140,7 @@ resource "digitalocean_droplet" "postgresql-slave" {
   user_data          = "${file("cloud_init/cloud_config")}"
 
   lifecycle {
-    #    prevent_destroy = true
+    prevent_destroy = true
   }
 }
 
@@ -158,7 +158,7 @@ resource "digitalocean_droplet" "radius" {
   resize_disk = false
 
   lifecycle {
-    #    prevent_destroy = true
+    prevent_destroy = true
   }
 }
 
@@ -209,7 +209,7 @@ resource "digitalocean_droplet" "web" {
   count              = "${var.web_count}"
 
   lifecycle {
-    #    prevent_destroy = true
+    prevent_destroy = true
   }
 }
 
@@ -247,19 +247,20 @@ resource "digitalocean_droplet" "nodejs" {
   }
 }
 
-resource "digitalocean_droplet" "test" {
-  image              = "${var.main_image}"
-  name               = "test${count.index + 1}.gw.lan"
-  region             = "${var.main_region}"
-  size               = "s-1vcpu-1gb"
-  private_networking = true
-  tags               = ["${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
-  ssh_keys           = ["${var.my_key_public}"]
-  user_data          = "${file("cloud_init/cloud_config")}"
+//resource "digitalocean_droplet" "test" {
+//  image              = "${var.main_image}"
+//  name               = "test${count.index + 1}.gw.lan"
+//  region             = "${var.main_region}"
+//  size               = "s-1vcpu-1gb"
+//  private_networking = true
+//  tags               = ["${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
+//  ssh_keys           = ["${var.my_key_public}"]
+//  user_data          = "${file("cloud_init/cloud_config")}"
+//
+//  count = "${var.test_count}"
+//
+//  lifecycle {
+//    #    prevent_destroy = true
+//  }
+//}
 
-  count = "${var.test_count}"
-
-  lifecycle {
-    #    prevent_destroy = true
-  }
-}
