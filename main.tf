@@ -251,7 +251,7 @@ resource "digitalocean_droplet" "nodejs" {
 //  image              = "${var.main_image}"
 //  name               = "test${count.index + 1}.gw.lan"
 //  region             = "${var.main_region}"
-//  size               = "s-2vcpu-2gb"
+//  size               = "s-1vcpu-1gb"
 //  private_networking = true
 //  tags               = ["${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
 //  ssh_keys           = ["${var.my_key_public}"]

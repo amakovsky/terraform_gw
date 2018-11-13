@@ -68,12 +68,12 @@ resource "digitalocean_firewall" "gitlab" {
     {
       protocol    = "tcp"
       port_range  = "80"
-      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.runner.id}"]
+      source_tags = ["${digitalocean_tag.all.id}"]
     },
     {
       protocol    = "tcp"
       port_range  = "443"
-      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.runner.id}"]
+      source_tags = ["${digitalocean_tag.all.id}"]
     },
     {
       protocol    = "tcp"
@@ -163,7 +163,7 @@ resource "digitalocean_firewall" "redis" {
     {
       protocol    = "tcp"
       port_range  = "6379"
-      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.redis.id}", "${digitalocean_tag.web.id}"]
+      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.redis.id}", "${digitalocean_tag.web.id}", "${digitalocean_tag.all.id}"]
     },
     {
       protocol    = "tcp"
@@ -247,6 +247,11 @@ resource "digitalocean_firewall" "softether" {
       protocol         = "tcp"
       port_range       = "8443"
       source_addresses = ["0.0.0.0/0", "::/0"]
+    },
+    {
+      protocol    = "tcp"
+      port_range  = "80"
+      source_tags = ["${digitalocean_tag.openvpn.id}"]
     },
   ]
 }
