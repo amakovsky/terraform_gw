@@ -200,7 +200,7 @@ resource "digitalocean_droplet" "web" {
   image              = "${var.main_image}"
   name               = "web${count.index + 1}.gw.lan"
   region             = "${var.main_region}"
-  size               = "s-2vcpu-2gb"
+  size               = "s-2vcpu-4gb"
   private_networking = true
   tags               = ["${digitalocean_tag.web.name}", "${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
   ssh_keys           = ["${var.my_key_public}", "${var.vlad_key_public}"]
@@ -251,7 +251,7 @@ resource "digitalocean_droplet" "nodejs" {
 //  image              = "${var.main_image}"
 //  name               = "test${count.index + 1}.gw.lan"
 //  region             = "${var.main_region}"
-//  size               = "s-1vcpu-1gb"
+//  size               = "s-2vcpu-2gb"
 //  private_networking = true
 //  tags               = ["${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
 //  ssh_keys           = ["${var.my_key_public}"]

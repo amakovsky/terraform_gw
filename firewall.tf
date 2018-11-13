@@ -75,6 +75,11 @@ resource "digitalocean_firewall" "gitlab" {
       port_range  = "443"
       source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.runner.id}"]
     },
+    {
+      protocol    = "tcp"
+      port_range  = "5001"
+      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.runner.id}"]
+    },
   ]
 }
 
