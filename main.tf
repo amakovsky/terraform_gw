@@ -248,7 +248,7 @@ resource "digitalocean_droplet" "nodejs" {
 }
 
 //resource "digitalocean_droplet" "test" {
-//  image              = "${var.main_image}"
+//  image              = "ubuntu-18-04-x64"
 //  name               = "test${count.index + 1}.gw.lan"
 //  region             = "${var.main_region}"
 //  size               = "s-1vcpu-1gb"

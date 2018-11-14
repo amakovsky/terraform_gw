@@ -15,7 +15,7 @@ variable "do_token" {
 }
 
 variable "main_image" {
-  default = "ubuntu-18-04-x64"
+  default = "38897365"
 }
 
 variable "main_region" {
