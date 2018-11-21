@@ -245,7 +245,7 @@ resource "digitalocean_firewall" "softether" {
     },
     {
       protocol         = "tcp"
-      port_range       = "8443"
+      port_range       = "443"
       source_addresses = ["0.0.0.0/0", "::/0"]
     },
     {
@@ -288,6 +288,24 @@ resource "digitalocean_firewall" "web-data" {
       protocol    = "tcp"
       port_range  = "22"
       source_tags = ["${digitalocean_tag.runner.id}"]
+    },
+  ]
+}
+
+resource "digitalocean_firewall" "stage" {
+  name = "stage"
+  tags = ["${digitalocean_tag.stage.id}"]
+
+  inbound_rule = [
+    {
+      protocol    = "tcp"
+      port_range  = "9200"
+      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.softether.id}"]
+    },
+    {
+      protocol    = "tcp"
+      port_range  = "5432"
+      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.softether.id}"]
     },
   ]
 }

@@ -65,3 +65,7 @@ variable "nodejs_count" {
 variable "test_count" {
   default = 1
 }
+
+variable "stage_count" {
+  default = 1
+}

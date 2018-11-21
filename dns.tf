@@ -14,6 +14,27 @@ resource "digitalocean_record" "krispykreme" {
   value  = "${digitalocean_droplet.nodejs.ipv4_address}"
 }
 
+resource "digitalocean_record" "hub1" {
+  domain = "${digitalocean_domain.gettwifi.name}"
+  type   = "A"
+  name   = "hub1"
+  value  = "${digitalocean_droplet.softether.0.ipv4_address}"
+}
+
+resource "digitalocean_record" "hub2" {
+  domain = "${digitalocean_domain.gettwifi.name}"
+  type   = "A"
+  name   = "hub2"
+  value  = "${digitalocean_droplet.softether.1.ipv4_address}"
+}
+
+resource "digitalocean_record" "hub3" {
+  domain = "${digitalocean_domain.gettwifi.name}"
+  type   = "A"
+  name   = "hub3"
+  value  = "${digitalocean_droplet.softether.2.ipv4_address}"
+}
+
 resource "digitalocean_record" "app" {
   domain = "${digitalocean_domain.gettwifi.name}"
   type   = "A"

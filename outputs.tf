@@ -125,3 +125,11 @@ output "public ip web_data" {
 output "private ip web_data" {
   value = "${digitalocean_droplet.web-data.*.ipv4_address_private}"
 }
+
+output "public ip stage" {
+  value = "${digitalocean_droplet.stage.*.ipv4_address}"
+}
+
+output "private ip stage" {
+  value = "${digitalocean_droplet.stage.*.ipv4_address_private}"
+}
