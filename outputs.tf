@@ -102,13 +102,13 @@ output "private ip web" {
   value = "${digitalocean_droplet.web.*.ipv4_address_private}"
 }
 
-//output "public ip test" {
-//  value = "${digitalocean_droplet.test.*.ipv4_address}"
-//}
-//
-//output "private ip test" {
-//  value = "${digitalocean_droplet.test.*.ipv4_address_private}"
-//}
+output "public ip test" {
+  value = "${digitalocean_droplet.test.*.ipv4_address}"
+}
+
+output "private ip test" {
+  value = "${digitalocean_droplet.test.*.ipv4_address_private}"
+}
 
 output "public ip nodejs" {
   value = "${digitalocean_droplet.nodejs.*.ipv4_address}"

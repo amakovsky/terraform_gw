@@ -217,7 +217,7 @@ resource "digitalocean_droplet" "web-data" {
   image              = "${var.main_image}"
   name               = "web-data${count.index + 1}.gw.lan"
   region             = "${var.main_region}"
-  size               = "s-2vcpu-2gb"
+  size               = "s-2vcpu-4gb"
   private_networking = true
   tags               = ["${digitalocean_tag.web-data.name}", "${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
   ssh_keys           = ["${var.my_key_public}", "${var.vlad_key_public}"]
@@ -251,7 +251,7 @@ resource "digitalocean_droplet" "stage" {
   image              = "ubuntu-18-04-x64"
   name               = "stage${count.index + 1}.gw.lan"
   region             = "${var.main_region}"
-  size               = "s-2vcpu-2gb"
+  size               = "s-2vcpu-4gb"
   private_networking = true
   tags               = ["${digitalocean_tag.stage.name}", "${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
   ssh_keys           = ["${var.my_key_public}"]
@@ -260,24 +260,23 @@ resource "digitalocean_droplet" "stage" {
   count = "${var.stage_count}"
 
   lifecycle {
-    prevent_destroy = true
+    #    prevent_destroy = true
   }
 }
 
-//resource "digitalocean_droplet" "test" {
-//  image              = "ubuntu-18-04-x64"
-//  name               = "test${count.index + 1}.gw.lan"
-//  region             = "${var.main_region}"
-//  size               = "s-1vcpu-1gb"
-//  private_networking = true
-//  tags               = ["${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
-//  ssh_keys           = ["${var.my_key_public}"]
-//  user_data          = "${file("cloud_init/cloud_config")}"
-//
-//  count = "${var.test_count}"
-//
-//  lifecycle {
-//    #    prevent_destroy = true
-//  }
-//}
+resource "digitalocean_droplet" "test" {
+  image              = "ubuntu-18-04-x64"
+  name               = "test${count.index + 1}.gw.lan"
+  region             = "${var.main_region}"
+  size               = "s-1vcpu-1gb"
+  private_networking = true
+  tags               = ["${digitalocean_tag.test.name}", "${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
+  ssh_keys           = ["${var.my_key_public}"]
+  user_data          = "${file("cloud_init/cloud_config")}"
 
+  count = "${var.test_count}"
+
+  lifecycle {
+    #    prevent_destroy = true
+  }
+}

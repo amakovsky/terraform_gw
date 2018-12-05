@@ -168,7 +168,7 @@ resource "digitalocean_firewall" "redis" {
     {
       protocol    = "tcp"
       port_range  = "26379"
-      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.redis.id}", "${digitalocean_tag.web.id}"]
+      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.redis.id}", "${digitalocean_tag.web.id}", "${digitalocean_tag.web-data.id}"]
     },
   ]
 }
@@ -298,14 +298,58 @@ resource "digitalocean_firewall" "stage" {
 
   inbound_rule = [
     {
-      protocol    = "tcp"
+      //    {
+      //      protocol         = "udp"
+      //      port_range       = "1-65535"
+      //      source_addresses = ["0.0.0.0/0", "::/0"]
+      //    },
+      //    {
+      //      protocol         = "tcp"
+      //      port_range       = "1-65535"
+      //      source_addresses = ["0.0.0.0/0", "::/0"]
+      //    },
+      protocol = "tcp"
+
       port_range  = "9200"
-      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.softether.id}"]
+      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.softether.id}", "${digitalocean_tag.test.id}"]
     },
     {
       protocol    = "tcp"
       port_range  = "5432"
+      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.softether.id}", "${digitalocean_tag.test.id}"]
+    },
+    {
+      protocol    = "tcp"
+      port_range  = "5601"
+      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.softether.id}", "${digitalocean_tag.test.id}"]
+    },
+    {
+      protocol    = "udp"
+      port_range  = "37008"
+      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.softether.id}", "${digitalocean_tag.test.id}"]
+    },
+    {
+      protocol    = "tcp"
+      port_range  = "5044"
       source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.softether.id}"]
+    },
+  ]
+}
+
+resource "digitalocean_firewall" "test" {
+  name = "test"
+  tags = ["${digitalocean_tag.test.id}"]
+
+  inbound_rule = [
+    {
+      protocol         = "udp"
+      port_range       = "1-65535"
+      source_addresses = ["0.0.0.0/0", "::/0"]
+    },
+    {
+      protocol         = "tcp"
+      port_range       = "1-65535"
+      source_addresses = ["0.0.0.0/0", "::/0"]
     },
   ]
 }

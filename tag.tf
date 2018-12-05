@@ -125,3 +125,11 @@ resource "digitalocean_tag" "stage" {
     prevent_destroy = true
   }
 }
+
+resource "digitalocean_tag" "test" {
+  name = "test"
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
