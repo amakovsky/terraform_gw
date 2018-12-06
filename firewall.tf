@@ -353,3 +353,36 @@ resource "digitalocean_firewall" "test" {
     },
   ]
 }
+
+resource "digitalocean_firewall" "elk" {
+  name = "elk"
+  tags = ["${digitalocean_tag.elk.id}"]
+
+  inbound_rule = [
+    {
+      protocol    = "tcp"
+      port_range  = "9200"
+      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.softether.id}", "${digitalocean_tag.elk.id}"]
+    },
+    {
+      protocol    = "tcp"
+      port_range  = "5601"
+      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.softether.id}"]
+    },
+    {
+      protocol    = "tcp"
+      port_range  = "5044"
+      source_tags = ["${digitalocean_tag.all.id}"]
+    },
+    {
+      protocol    = "tcp"
+      port_range  = "9300"
+      source_tags = ["${digitalocean_tag.elk.id}"]
+    },
+    {
+      protocol    = "tcp"
+      port_range  = "80"
+      source_tags = ["${digitalocean_tag.openvpn.id}"]
+    },
+  ]
+}

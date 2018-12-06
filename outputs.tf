@@ -133,3 +133,11 @@ output "public ip stage" {
 output "private ip stage" {
   value = "${digitalocean_droplet.stage.*.ipv4_address_private}"
 }
+
+output "public ip elk" {
+  value = "${digitalocean_droplet.elk.*.ipv4_address}"
+}
+
+output "private ip elk" {
+  value = "${digitalocean_droplet.elk.*.ipv4_address_private}"
+}

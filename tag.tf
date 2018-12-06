@@ -133,3 +133,11 @@ resource "digitalocean_tag" "test" {
     prevent_destroy = true
   }
 }
+
+resource "digitalocean_tag" "elk" {
+  name = "elk"
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}

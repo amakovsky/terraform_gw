@@ -69,3 +69,7 @@ variable "test_count" {
 variable "stage_count" {
   default = 1
 }
+
+variable "elk_count" {
+  default = 3
+}

@@ -280,3 +280,20 @@ resource "digitalocean_droplet" "test" {
     #    prevent_destroy = true
   }
 }
+
+resource "digitalocean_droplet" "elk" {
+  image              = "ubuntu-18-04-x64"
+  name               = "elk${count.index + 1}.gw.lan"
+  region             = "${var.main_region}"
+  size               = "s-1vcpu-3gb"
+  private_networking = true
+  tags               = ["${digitalocean_tag.elk.name}", "${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
+  ssh_keys           = ["${var.my_key_public}"]
+  user_data          = "${file("cloud_init/cloud_config")}"
+
+  count = "${var.elk_count}"
+
+  lifecycle {
+    #    prevent_destroy = true
+  }
+}
