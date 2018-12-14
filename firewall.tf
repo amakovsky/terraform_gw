@@ -316,7 +316,7 @@ resource "digitalocean_firewall" "stage" {
     {
       protocol    = "tcp"
       port_range  = "5432"
-      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.softether.id}", "${digitalocean_tag.test.id}"]
+      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.softether.id}", "${digitalocean_tag.test.id}", "${digitalocean_tag.web.name}"]
     },
     {
       protocol    = "tcp"
@@ -332,6 +332,11 @@ resource "digitalocean_firewall" "stage" {
       protocol    = "tcp"
       port_range  = "5044"
       source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.softether.id}"]
+    },
+    {
+      protocol         = "tcp"
+      port_range       = "80"
+      source_addresses = ["0.0.0.0/0", "::/0"]
     },
   ]
 }

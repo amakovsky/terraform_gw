@@ -69,3 +69,17 @@ resource "digitalocean_record" "fetch" {
   name   = "fetchnew"
   value  = "${digitalocean_loadbalancer.web.ip}"
 }
+
+resource "digitalocean_record" "gitlab" {
+  domain = "${digitalocean_domain.gettwifi.name}"
+  type   = "A"
+  name   = "gitlab"
+  value  = "${digitalocean_droplet.gitlab.ipv4_address}"
+}
+
+resource "digitalocean_record" "test" {
+  domain = "${digitalocean_domain.gettwifi.name}"
+  type   = "A"
+  name   = "test"
+  value  = "${digitalocean_droplet.nodejs.ipv4_address}"
+}
