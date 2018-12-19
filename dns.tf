@@ -83,3 +83,10 @@ resource "digitalocean_record" "test" {
   name   = "test"
   value  = "${digitalocean_droplet.nodejs.ipv4_address}"
 }
+
+resource "digitalocean_record" "camera" {
+  domain = "${digitalocean_domain.gettwifi.name}"
+  type   = "A"
+  name   = "camera"
+  value  = "${digitalocean_droplet.nodejs.ipv4_address}"
+}
