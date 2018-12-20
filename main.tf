@@ -248,7 +248,7 @@ resource "digitalocean_droplet" "nodejs" {
 }
 
 resource "digitalocean_droplet" "stage" {
-  image              = "ubuntu-18-04-x64"
+  image              = "40248606"
   name               = "stage${count.index + 1}.gw.lan"
   region             = "${var.main_region}"
   size               = "s-2vcpu-4gb"
@@ -294,6 +294,6 @@ resource "digitalocean_droplet" "elk" {
   count = "${var.elk_count}"
 
   lifecycle {
-    #    prevent_destroy = true
+    prevent_destroy = true
   }
 }
