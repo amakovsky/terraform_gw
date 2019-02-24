@@ -63,17 +63,19 @@ resource "digitalocean_firewall" "gitlab" {
     {
       protocol    = "tcp"
       port_range  = "2222"
-      source_tags = ["${digitalocean_tag.openvpn.id}"]
+      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.runner.id}"]
     },
     {
       protocol    = "tcp"
       port_range  = "80"
       source_tags = ["${digitalocean_tag.all.id}"]
+      source_addresses = ["0.0.0.0/0", "::/0"]
     },
     {
       protocol    = "tcp"
       port_range  = "443"
       source_tags = ["${digitalocean_tag.all.id}"]
+      source_addresses = ["0.0.0.0/0", "::/0"]
     },
     {
       protocol    = "tcp"
@@ -91,7 +93,7 @@ resource "digitalocean_firewall" "private" {
     {
       protocol    = "tcp"
       port_range  = "22"
-      source_tags = ["${digitalocean_tag.openvpn.id}"]
+      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.runner.id}"]
     },
   ]
 }

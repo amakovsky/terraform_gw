@@ -38,35 +38,28 @@ resource "digitalocean_record" "hub3" {
 resource "digitalocean_record" "app" {
   domain = "${digitalocean_domain.gettwifi.name}"
   type   = "A"
-  name   = "appnew"
+  name   = "app"
   value  = "${digitalocean_loadbalancer.web.ip}"
 }
 
 resource "digitalocean_record" "auth" {
   domain = "${digitalocean_domain.gettwifi.name}"
   type   = "A"
-  name   = "authnew"
+  name   = "auth"
   value  = "${digitalocean_loadbalancer.web.ip}"
 }
 
-resource "digitalocean_record" "lk" {
+resource "digitalocean_record" "export" {
   domain = "${digitalocean_domain.gettwifi.name}"
   type   = "A"
-  name   = "lknew"
-  value  = "${digitalocean_loadbalancer.web.ip}"
-}
-
-resource "digitalocean_record" "cp" {
-  domain = "${digitalocean_domain.gettwifi.name}"
-  type   = "A"
-  name   = "cpnew"
-  value  = "${digitalocean_loadbalancer.web.ip}"
+  name   = "export"
+  value  = "${digitalocean_droplet.nodejs.ipv4_address}"
 }
 
 resource "digitalocean_record" "fetch" {
   domain = "${digitalocean_domain.gettwifi.name}"
   type   = "A"
-  name   = "fetchnew"
+  name   = "fetch"
   value  = "${digitalocean_loadbalancer.web.ip}"
 }
 
