@@ -6,6 +6,12 @@ resource "digitalocean_certificate" "cert" {
   certificate_chain = "${file("gettwifi.com/chain.crt")}"
 }
 
+resource "digitalocean_certificate" "nodejs" {
+  name    = "nodejs"
+  type    = "lets_encrypt"
+  domains = ["test.gettwifi.com"]
+}
+
 resource "digitalocean_loadbalancer" "web" {
   name                   = "web"
   region                 = "${var.main_region}"

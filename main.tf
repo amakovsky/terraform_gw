@@ -232,7 +232,7 @@ resource "digitalocean_droplet" "web-data" {
 
 resource "digitalocean_droplet" "nodejs" {
   image              = "40248606"
-  name               = "nodejs${count.index + 1}.gw.lan"
+  name               = "nodejs-stage.gw.lan"
   region             = "${var.main_region}"
   size               = "s-2vcpu-2gb"
   private_networking = true
@@ -241,6 +241,23 @@ resource "digitalocean_droplet" "nodejs" {
   user_data          = "${file("cloud_init/cloud_config")}"
   resize_disk        = false
   count              = "${var.nodejs_count}"
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+resource "digitalocean_droplet" "js" {
+  image              = "ubuntu-18-04-x64"
+  name               = "js${count.index + 1}.gw.lan"
+  region             = "${var.main_region}"
+  size               = "s-2vcpu-2gb"
+  private_networking = true
+  tags               = ["${digitalocean_tag.web.name}", "${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
+  ssh_keys           = ["${var.my_key_public}", "${var.vlad_key_public}"]
+  user_data          = "${file("cloud_init/cloud_config")}"
+  resize_disk        = false
+  count              = "${var.js_count}"
 
   lifecycle {
     prevent_destroy = true

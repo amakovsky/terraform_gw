@@ -62,6 +62,10 @@ variable "nodejs_count" {
   default = 1
 }
 
+variable "js_count" {
+  default = 2
+}
+
 variable "test_count" {
   default = 1
 }

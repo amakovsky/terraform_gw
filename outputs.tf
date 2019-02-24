@@ -118,6 +118,14 @@ output "private ip nodejs" {
   value = "${digitalocean_droplet.nodejs.*.ipv4_address_private}"
 }
 
+output "public ip js" {
+  value = "${digitalocean_droplet.js.*.ipv4_address}"
+}
+
+output "private ip js" {
+  value = "${digitalocean_droplet.js.*.ipv4_address_private}"
+}
+
 output "public ip web_data" {
   value = "${digitalocean_droplet.web-data.*.ipv4_address}"
 }
