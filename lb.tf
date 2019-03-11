@@ -32,7 +32,7 @@ resource "digitalocean_loadbalancer" "web" {
       target_port     = 80
       target_protocol = "http"
 
-      certificate_id = "4598f5b8-750c-4bd4-bf3c-7a7920c1ba65"
+      certificate_id = "54014b22-177b-4e72-9b33-0a3c285d2a9b"
     },
   ]
 
