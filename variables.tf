@@ -15,7 +15,7 @@ variable "do_token" {
 }
 
 variable "main_image" {
-  default = "38897365"
+  default = "ubuntu-18-04-x64"
 }
 
 variable "main_region" {
@@ -43,7 +43,7 @@ variable "radius_count" {
 }
 
 variable "softether_count" {
-  default = 3
+  default = 1
 }
 
 variable "web_count" {

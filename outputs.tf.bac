@@ -86,21 +86,21 @@ output "private ip softether" {
   value = "${digitalocean_droplet.softether.*.ipv4_address_private}"
 }
 
-output "public ip asterisk" {
-  value = "${digitalocean_droplet.asterisk.*.ipv4_address}"
-}
+//output "public ip asterisk" {
+//  value = "${digitalocean_droplet.asterisk.*.ipv4_address}"
+//}
 
-output "private ip asterisk" {
-  value = "${digitalocean_droplet.asterisk.*.ipv4_address_private}"
-}
+//output "private ip asterisk" {
+//  value = "${digitalocean_droplet.asterisk.*.ipv4_address_private}"
+//}
 
-output "public ip web" {
-  value = "${digitalocean_droplet.web.*.ipv4_address}"
-}
+//output "public ip web" {
+//  value = "${digitalocean_droplet.web.*.ipv4_address}"
+//}
 
-output "private ip web" {
-  value = "${digitalocean_droplet.web.*.ipv4_address_private}"
-}
+//output "private ip web" {
+//  value = "${digitalocean_droplet.web.*.ipv4_address_private}"
+//}
 
 //output "public ip test" {
 //  value = "${digitalocean_droplet.test.*.ipv4_address}"
@@ -110,13 +110,13 @@ output "private ip web" {
 //  value = "${digitalocean_droplet.test.*.ipv4_address_private}"
 //}
 
-output "public ip nodejs" {
-  value = "${digitalocean_droplet.nodejs.*.ipv4_address}"
-}
+//output "public ip nodejs" {
+//  value = "${digitalocean_droplet.nodejs.*.ipv4_address}"
+//}
 
-output "private ip nodejs" {
-  value = "${digitalocean_droplet.nodejs.*.ipv4_address_private}"
-}
+//output "private ip nodejs" {
+//  value = "${digitalocean_droplet.nodejs.*.ipv4_address_private}"
+//}
 
 //output "public ip js" {
 //  value = "${digitalocean_droplet.js.*.ipv4_address}"
@@ -134,18 +134,18 @@ output "private ip web_data" {
   value = "${digitalocean_droplet.web-data.*.ipv4_address_private}"
 }
 
-output "public ip stage" {
-  value = "${digitalocean_droplet.stage.*.ipv4_address}"
-}
+//output "public ip stage" {
+//  value = "${digitalocean_droplet.stage.*.ipv4_address}"
+//}
 
-output "private ip stage" {
-  value = "${digitalocean_droplet.stage.*.ipv4_address_private}"
-}
+//output "private ip stage" {
+//  value = "${digitalocean_droplet.stage.*.ipv4_address_private}"
+//}
 
-output "public ip elk" {
-  value = "${digitalocean_droplet.elk.*.ipv4_address}"
-}
+//output "public ip elk" {
+//  value = "${digitalocean_droplet.elk.*.ipv4_address}"
+//}
 
-output "private ip elk" {
-  value = "${digitalocean_droplet.elk.*.ipv4_address_private}"
-}
+//output "private ip elk" {
+//  value = "${digitalocean_droplet.elk.*.ipv4_address_private}"
+//}
