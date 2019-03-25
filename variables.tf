@@ -15,7 +15,7 @@ variable "do_token" {
 }
 
 variable "main_image" {
-  default = "ubuntu-18-04-x64"
+  default = "44910973"
 }
 
 variable "main_region" {
@@ -39,7 +39,7 @@ variable "cassandra_count" {
 }
 
 variable "radius_count" {
-  default = 2
+  default = 1
 }
 
 variable "softether_count" {
