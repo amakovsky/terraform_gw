@@ -43,7 +43,7 @@ variable "radius_count" {
 }
 
 variable "softether_count" {
-  default = 1
+  default = 3
 }
 
 variable "web_count" {
@@ -63,7 +63,7 @@ variable "nodejs_count" {
 }
 
 variable "js_count" {
-  default = 2
+  default = 1
 }
 
 variable "test_count" {

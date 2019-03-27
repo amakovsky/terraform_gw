@@ -163,10 +163,10 @@ resource "digitalocean_droplet" "radius" {
 }
 
 resource "digitalocean_droplet" "softether" {
-  image              = "${var.main_image}"
+  image              = "ubuntu-18-04-x64"
   name               = "softether${count.index + 1}.gw.lan"
   region             = "${var.main_region}"
-  size               = "s-2vcpu-4gb"
+  size               = "s-2vcpu-2gb"
   private_networking = true
   tags               = ["${digitalocean_tag.softether.name}", "${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
   ssh_keys           = ["${var.my_key_public}"]
@@ -247,22 +247,22 @@ resource "digitalocean_droplet" "web-data" {
 //  }
 //}
 
-//resource "digitalocean_droplet" "js" {
-//  image              = "ubuntu-18-04-x64"
-//  name               = "js${count.index + 1}.gw.lan"
-//  region             = "${var.main_region}"
-//  size               = "s-2vcpu-2gb"
-//  private_networking = true
-//  tags               = ["${digitalocean_tag.web.name}", "${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
-//  ssh_keys           = ["${var.my_key_public}", "${var.vlad_key_public}"]
-//  user_data          = "${file("cloud_init/cloud_config")}"
-//  resize_disk        = false
-//  count              = "${var.js_count}"
-//
-//  lifecycle {
-//    prevent_destroy = true
-//  }
-//}
+resource "digitalocean_droplet" "js" {
+  image              = "ubuntu-18-04-x64"
+  name               = "js${count.index + 1}.gw.lan"
+  region             = "${var.main_region}"
+  size               = "s-2vcpu-2gb"
+  private_networking = true
+  tags               = ["${digitalocean_tag.web.name}", "${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
+  ssh_keys           = ["${var.my_key_public}"]
+  user_data          = "${file("cloud_init/cloud_config")}"
+  resize_disk        = false
+  count              = "${var.js_count}"
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
 
 //resource "digitalocean_droplet" "stage" {
 //  image              = "40248606"
