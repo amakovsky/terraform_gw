@@ -77,3 +77,7 @@ variable "stage_count" {
 variable "elk_count" {
   default = 3
 }
+
+variable "spark_count" {
+  default = 1
+}

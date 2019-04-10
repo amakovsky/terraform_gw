@@ -314,3 +314,20 @@ resource "digitalocean_droplet" "js" {
 //    prevent_destroy = true
 //  }
 //}
+
+resource "digitalocean_droplet" "spark" {
+  image              = "ubuntu-18-04-x64"
+  name               = "spark${count.index + 1}.gw.lan"
+  region             = "${var.main_region}"
+  size               = "s-2vcpu-2gb"
+  private_networking = true
+  tags               = ["${digitalocean_tag.spark.name}", "${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
+  ssh_keys           = ["${var.my_key_public}"]
+  user_data          = "${file("cloud_init/cloud_config")}"
+
+  count = "${var.spark_count}"
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}

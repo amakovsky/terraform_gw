@@ -141,3 +141,11 @@ resource "digitalocean_tag" "elk" {
     prevent_destroy = true
   }
 }
+
+resource "digitalocean_tag" "spark" {
+  name = "spark"
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}

@@ -205,6 +205,16 @@ resource "digitalocean_firewall" "cassandra" {
       port_range  = "26379"
       source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.redis.id}", "${digitalocean_tag.web.id}", "${digitalocean_tag.web-data.id}"]
     },
+    {
+      protocol    = "tcp"
+      port_range  = "22"
+      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.runner.id}", "${digitalocean_tag.spark.id}"]
+    },
+    {
+      protocol    = "tcp"
+      port_range  = "8081"
+      source_tags = ["${digitalocean_tag.openvpn.id}"]
+    },
   ]
 }
 
@@ -400,6 +410,39 @@ resource "digitalocean_firewall" "elk" {
       protocol    = "tcp"
       port_range  = "80"
       source_tags = ["${digitalocean_tag.openvpn.id}"]
+    },
+  ]
+}
+
+resource "digitalocean_firewall" "spark" {
+  name = "spark"
+  tags = ["${digitalocean_tag.spark.id}"]
+
+  inbound_rule = [
+    {
+      protocol    = "tcp"
+      port_range  = "22"
+      source_tags = ["${digitalocean_tag.spark.id}"]
+    },
+    {
+      protocol    = "tcp"
+      port_range  = "7077"
+      source_tags = ["${digitalocean_tag.spark.id}", "${digitalocean_tag.cassandra.id}"]
+    },
+    {
+      protocol    = "tcp"
+      port_range  = "4040"
+      source_tags = ["${digitalocean_tag.openvpn.id}"]
+    },
+    {
+      protocol    = "tcp"
+      port_range  = "8080"
+      source_tags = ["${digitalocean_tag.openvpn.id}"]
+    },
+    {
+      protocol    = "tcp"
+      port_range  = "20002"
+      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.cassandra.id}"]
     },
   ]
 }
