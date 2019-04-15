@@ -79,23 +79,23 @@ resource "digitalocean_droplet" "gitlab-runner" {
   }
 }
 
-//resource "digitalocean_droplet" "redis" {
-//  image              = "${var.main_image}"
-//  name               = "redis${count.index + 1}.gw.lan"
-//  region             = "${var.main_region}"
-//  size               = "s-2vcpu-4gb"
-//  private_networking = true
-//  tags               = ["${digitalocean_tag.redis.name}", "${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
-//  ssh_keys           = ["${var.my_key_public}"]
-//  user_data          = "${file("cloud_init/cloud_config")}"
-//
-//  count       = "${var.redis_count}"
-//  resize_disk = false
-//
-//  lifecycle {
-//    prevent_destroy = true
-//  }
-//}
+resource "digitalocean_droplet" "redis" {
+  image              = "${var.main_image}"
+  name               = "redis${count.index + 1}.gw.lan"
+  region             = "${var.main_region}"
+  size               = "s-2vcpu-4gb"
+  private_networking = true
+  tags               = ["${digitalocean_tag.redis.name}", "${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
+  ssh_keys           = ["${var.my_key_public}"]
+  user_data          = "${file("cloud_init/cloud_config")}"
+
+  count       = "${var.redis_count}"
+  resize_disk = false
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
 
 resource "digitalocean_droplet" "cassandra" {
   image              = "${var.main_image}"
@@ -129,20 +129,20 @@ resource "digitalocean_droplet" "postgresql-master" {
   }
 }
 
-//resource "digitalocean_droplet" "postgresql-slave" {
-//  image              = "${var.main_image}"
-//  name               = "db-slave.gw.lan"
-//  region             = "${var.main_region}"
-//  size               = "s-2vcpu-2gb"
-//  private_networking = true
-//  tags               = ["${digitalocean_tag.postgresql.name}", "${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
-//  ssh_keys           = ["${var.my_key_public}"]
-//  user_data          = "${file("cloud_init/cloud_config")}"
-//
-//  lifecycle {
-//    prevent_destroy = true
-//  }
-//}
+resource "digitalocean_droplet" "postgresql-slave" {
+  image              = "${var.main_image}"
+  name               = "db-slave.gw.lan"
+  region             = "${var.main_region}"
+  size               = "s-2vcpu-2gb"
+  private_networking = true
+  tags               = ["${digitalocean_tag.postgresql.name}", "${digitalocean_tag.private.name}", "${digitalocean_tag.all.name}"]
+  ssh_keys           = ["${var.my_key_public}"]
+  user_data          = "${file("cloud_init/cloud_config")}"
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
 
 resource "digitalocean_droplet" "radius" {
   image              = "ubuntu-16-04-x64"

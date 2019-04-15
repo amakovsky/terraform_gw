@@ -165,7 +165,7 @@ resource "digitalocean_firewall" "redis" {
     {
       protocol    = "tcp"
       port_range  = "6379"
-      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.redis.id}", "${digitalocean_tag.web.id}", "${digitalocean_tag.all.id}"]
+      source_tags = ["${digitalocean_tag.openvpn.id}", "${digitalocean_tag.redis.id}", "${digitalocean_tag.web.id}", "${digitalocean_tag.all.id}", "${digitalocean_tag.web-data.id}"]
     },
     {
       protocol    = "tcp"
